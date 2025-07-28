@@ -20,7 +20,7 @@ echo "-------------------------------------------"
 # Do not start the tests immediately. Hub has to be ready with browser nodes
 echo "Checking if hub is ready..!"
 count=0
-while [ "$( curl -s http://${HUB_IP:-192.168.1.38}:4444/status | jq -r .value.ready )" != "true" ]
+while [ "$( curl -s http://${HUB_IP:-192.168.1.35}:4444/status | jq -r .value.ready )" != "true" ]
 do
   count=$((count+1))
   echo "Attempt: ${count}"
@@ -38,7 +38,7 @@ echo "Selenium Grid is up and running. Running the test...."
 # Start the java command
 java -cp 'libs/*' \
      -Dselenium.grid.enabled=true \
-     -Dselenium.grid.urlFormat="http://${HUB_IP:-192.168.1.38}:4444/wd/hub" \
+     -Dselenium.grid.urlFormat="http://${HUB_IP:-192.168.1.35}:4444/wd/hub" \
      -Dbrowser="${BROWSER:-chrome}" \
      org.testng.TestNG ${TEST_SUITE} \
      -threadcount "${THREAD_COUNT:-1}"  
