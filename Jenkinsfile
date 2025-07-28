@@ -6,14 +6,14 @@ pipeline {
         stage("Build Jar"){
 
             steps{
-                sh "mvn clean package -DskipsTest "
+                sh "mvn clean package -DskipTests"
             }
         }
 
         stage("Build Image"){
 
             steps{
-              sh "docker build -tpronoydas/selenium-docker"
+              sh "docker build -tpronoydas/selenium-docker . "
             }
         }
         stage("Push Image"){
