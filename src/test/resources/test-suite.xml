@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="End To End Test" parallel="false" thread-count="5">
+	<listeners>
+		<listener class-name="com.pronoydas.utility.TestNGListner"></listener>
+	</listeners>
+	<test name="FlightReservation_E2E">
+		<classes>
+		<class name="com.pronoydas.tests.FlightBooking.FlightReservationTest"></class> 
+		</classes>
+	</test>
+	<test name="VendorPortal E2E">
+		<classes>
+			<class name="com.pronoydas.tests.VendorPortal.VendorPortalTest"></class>
+		</classes>
+	</test>
+</suite>
