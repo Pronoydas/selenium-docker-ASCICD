@@ -6,20 +6,20 @@ pipeline {
         stage("Build Jar"){
 
             steps{
-                sh "mvn clean package -DskipsTest "
+                bat "mvn clean package -DskipsTest "
             }
         }
 
         stage("Build Image"){
 
             steps{
-              sh "docker build -tpronoydas/selenium-docker"
+              bat "docker build -tpronoydas/selenium-docker"
             }
         }
         stage("Push Image"){
 
             steps{
-               sh "docker push pronoydas/selenium-docker"
+               bat "docker push pronoydas/selenium-docker"
             }
         }
     }
