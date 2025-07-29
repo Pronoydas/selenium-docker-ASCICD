@@ -4,5 +4,6 @@ RUN apk add dos2unix
 WORKDIR /home/docker-selenium
 COPY /target/docker-resources /home/docker-selenium
 COPY /script/script.sh  /home/docker-selenium/grid_runner.sh
+RUN dos2unix grid_runner.sh
 ENTRYPOINT  sh grid_runner.sh 
  
