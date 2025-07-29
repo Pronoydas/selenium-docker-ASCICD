@@ -13,7 +13,7 @@ pipeline {
         stage("Build Image"){
 
             steps{
-              sh "docker build -t=pronoydas/automation-docker ."
+              sh "docker build -t=pronoydas/automation-selenium-docker ."
             }
         }
         stage("Push Image"){
@@ -22,18 +22,17 @@ pipeline {
             }
             steps{
                sh '''
-                    docker login -u ${DOCKER_HUB_USR} -p ${DOCKER_HUB_PSW}
-                    docker push pronoydas/automation-docker:latest
-                    docker tag  pronoydas/automation-docker:latest pronoydas/automation-docker:${BUILD_NUMBER}
-                    docker push pronoydas/automation-docker:${BUILD_NUMBER}
+                    docker push pronoydas/automation-selenium-docker:latest
+                    docker tag  pronoydas/automation-selenium-docker:latest pronoydas/automation-selenium-docker:${BUILD_NUMBER}
+                    docker push pronoydas/automation-selenium-docker:${BUILD_NUMBER}
 
                '''
             }
         }
     }
-    post{
-        always{
-            sh "docker logout"
-        }
-    }
+    // post{
+    //     always{
+    //         sh "docker logout"
+    //     }
+    // }
 }
