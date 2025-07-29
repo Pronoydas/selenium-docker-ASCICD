@@ -13,7 +13,7 @@ pipeline {
         stage("Build Image"){
 
             steps{
-              sh "docker build -tpronoydas/selenium-docker . "
+              sh "docker build -t=pronoydas/selenium-docker . "
             }
         }
         stage("Push Image"){
