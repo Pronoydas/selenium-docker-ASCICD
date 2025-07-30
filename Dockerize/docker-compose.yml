@@ -38,8 +38,8 @@ services:
     - HUB_HOST=selenium-hub
     - IS_ENABLE=true
     - BROWSER=chrome
-    - HOST_IP=192.168.1.38
+    - HOST_IP=15.207.84.0
     - TEST_SUITE=test-suite.xml
     - THREAD_COUNT=1 
     volumes:
-     -  /C:/Users/prono/OneDrive/Documents/AutomationWIthDockerAndCICD/Result:/home/docker-selenium/test-output
+     -  ./output:/home/selenium-docker/test-output
