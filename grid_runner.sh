@@ -1,6 +1,6 @@
 #!/bin/bash
 echo "-------------------------------------------"                                                                                             
-echo "HUB_IP     : ${HUB_IP:-13.126.22.235}"   # AWS MC IP Address                                                                                                  
+echo "HUB_IP     : ${HUB_IP:-15.207.84.0}"   # AWS MC IP Address                                                                                                  
 echo "BROWSER       : ${BROWSER:-chrome}"                                                                                                      
 echo "THREAD_COUNT  : ${THREAD_COUNT:-1}"                                                                                                      
 echo "TEST_SUITE    : ${TEST_SUITE}"                                                                                                           
@@ -8,7 +8,7 @@ echo "IS_ENABLE    : ${IS_ENABLE:-true}"
 echo "-------------------------------------------"                                                                                                          
 echo "Checking If Hub is ready...!"                                                                                                                         
 count=0
-while [ "$( curl -s http://${HUB_IP:-13.126.22.235}:4444/status | jq -r .value.ready )" != "true" ]
+while [ "$( curl -s http://${HUB_IP:-15.207.84.0}:4444/status | jq -r .value.ready )" != "true" ]
 do
   count=$((count+1))
   echo "Attempt: ${count}"
@@ -22,6 +22,6 @@ done
 echo "Selenium Grid is up and running. Running the test...."
 java -cp 'libs/*' \
      -Dselenium.grid.enabled=true \
-     -Dselenium.grid.urlFormat="http://${HUB_IP:-13.126.22.235}:4444/wd/hub" \
+     -Dselenium.grid.urlFormat="http://${HUB_IP:-15.207.84.0}:4444/wd/hub" \
      -Dbrowser="${BROWSER:-chrome}" \
      org.testng.TestNG ${TEST_SUITE} -threadcount "${THREAD_COUNT:-1}"

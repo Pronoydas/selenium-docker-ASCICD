@@ -1,0 +1,30 @@
+services:
+  hub:
+    image: selenium/hub:4.32
+    ports:
+    - 4444:4444
+  chrome:
+    image: selenium/node-chromium:4.32
+    shm_size: '1g'
+    depends_on:
+    - hub
+    environment:
+    - SE_EVENT_BUS_HOST=hub
+    - SE_EVENT_BUS_PUBLISH_PORT=4442
+    - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
+    - SE_NODE_OVERRIDE_MAX_SESSIONS=true
+    - SE_NODE_MAX_SESSIONS=1
+  docker-selenium:
+    image: pronoydas/automation-selenium-docker
+    depends_on:
+     - chrome   
+    environment:
+    - HUB_HOST=hub
+    - IS_ENABLE=true
+    - BROWSER=chrome
+    - HOST_IP=15.207.84.0
+    - TEST_SUITE=test-suite.xml
+    - THREAD_COUNT=1 
+    volumes:
+    - ./output:/home/selenium-docker/test-output 
+  
