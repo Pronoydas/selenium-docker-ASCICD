@@ -30,6 +30,13 @@ pipeline {
                '''
             }
         }
+
+        stage("Executing Test"){
+            steps{
+                echo "Start Executing Test "
+                build job: 'docker-selenium-runner',wait: true, propagate: true, parameters: [string(name: 'BROWSER', value: 'chrome')]
+            }
+        }
     }
     post{
         always{
