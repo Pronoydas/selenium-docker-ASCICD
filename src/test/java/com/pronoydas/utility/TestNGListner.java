@@ -2,6 +2,7 @@ package com.pronoydas.utility;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.util.Objects;
 
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -13,7 +14,7 @@ public class TestNGListner  implements ITestListener{
 
 	@Override
 	public void onTestFailure(ITestResult result) {
-		if(result.getThrowable()!=null) {
+		if(Objects.nonNull(result)) {
 			StringWriter sw = new StringWriter();
 			PrintWriter pw = new PrintWriter(sw);
 			result.getThrowable().printStackTrace(pw);

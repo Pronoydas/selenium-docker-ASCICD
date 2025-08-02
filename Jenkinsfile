@@ -22,6 +22,7 @@ pipeline {
             }
             steps{
                sh '''
+                    docker login -u=${DOCKER_HUB_USR} -p=${DOCKER_HUB_PSW}
                     docker push pronoydas/automation-selenium-docker:latest
                     docker tag  pronoydas/automation-selenium-docker:latest pronoydas/automation-selenium-docker:${BUILD_NUMBER}
                     docker push pronoydas/automation-selenium-docker:${BUILD_NUMBER}
@@ -30,9 +31,9 @@ pipeline {
             }
         }
     }
-    // post{
-    //     always{
-    //         sh "docker logout"
-    //     }
-    // }
+    post{
+        always{
+            sh "docker logout"
+        }
+    }
 }
